@@ -1,0 +1,13 @@
+@import url("https://fonts.googleapis.com/css2?family=Philosopher:ital@0;1&display=swap");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* html {
+  @apply border border-black;
+}
+
+body {
+  @apply w-full h-screen border border-red-600;
+}
