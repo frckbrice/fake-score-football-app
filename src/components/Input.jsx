@@ -1,19 +1,28 @@
 import React, { forwardRef } from "react";
+import PropTypes from "prop-types";
 
-function Input({ onKeyUp, placeholder, type }, ref) {
+const Input = (props, ref) => {
   return (
     <>
       <input
+        type={props.type}
+        name={props.name}
         ref={ref}
-        onKeyUp={onKeyUp}
-        placeholder={placeholder}
-        type={type}
-        className="input-clubs py-3 px-12 text-2xl font-Philosopher ring ring-slate-400 mb-4 rounded-sm"
+        onChange={props.handleChange}
+        placeholder={props.placeholder}
+        className={props.className}
       />
     </>
   );
-}
+};
+Input.prototype = {
+  type: PropTypes.string,
+  name: PropTypes.string,
+  onChange: PropTypes.func,
+  placeholder: PropTypes.string,
+  className: PropTypes.string,
+};
+// const forwardRefInput = React.forwardRef(Input);
 
-const forwardRefInput = React.forwardRef(Input);
-
-export default forwardRefInput;
+// export default forwardRefInput;
+export default Input;
