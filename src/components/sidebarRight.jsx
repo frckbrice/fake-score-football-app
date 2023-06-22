@@ -77,7 +77,7 @@ function SideBarRight({ clubsData, searchField }) {
       <h1 className="text-center text-3xl font-Philosopher font-bold">
         Teams [ K - Z ]
       </h1>
-      <ul className="list list-none pr-1 text-xl font-Philosopher text-white overtflow-y-scroll">
+      <ul className="list list-none pr-1 text-xl font-Philosopher text-white h-700px overflow-y-auto">
         {clubsData
           ?.filter((club) => {
             return searchField.toLowerCase().trim() === ""
@@ -90,7 +90,7 @@ function SideBarRight({ clubsData, searchField }) {
               className="option-club  flex items-center gap-4 border border-white bg-indigo-900 my-1 px-2 py-3 cursor-pointer hover:scale-95 pl-8"
               onClick={() => handleClicked(club)}
             >
-              {/* <img src={club.url} alt={club.name} className="w-10 h-10 " /> */}
+              <img src={club.url} alt={club.name} className="w-10 h-10 " />
               {club.name}
             </li>
           ))}

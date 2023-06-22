@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 function Content() {
   const navigate = useNavigate();
   return (
-    <div className="content  h-60vh flex flex-col items-center justify-center text-center bg-no-repeat bg-cover bg-top relative">
+    <div className="content  h-60vh flex flex-col items-center justify-center text-center bg-no-repeat bg-cover bg-top relative px-10">
       <div className="absolute top-16 font-Satisfy text-3xl leading-10">
         <h1>Which Competition do you need ?</h1>
         <p>Make your choice below </p>

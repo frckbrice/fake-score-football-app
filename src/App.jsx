@@ -7,7 +7,7 @@ import Footer from "./components/Layout/Footer";
 
 function App() {
   return (
-    <div className="grid grid-row-5 ">
+    <div className="grid grid-row-5">
       <div className="row-col-1">
         <Header />
       </div>

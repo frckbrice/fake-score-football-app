@@ -81,7 +81,7 @@ const SideBarLeft = ({ clubsData, searchField }) => {
         Teams [ FC - A - K ]
       </h1>
 
-      <div className="list list-none pl-1 text-xl font-Philosopher text-white">
+      <ul className="list list-none pl-1 text-xl font-Philosopher text-white h-700px overflow-y-auto">
         {clubsData
           ?.filter((club) => {
             return searchField.toLowerCase().trim() === ""
@@ -89,17 +89,17 @@ const SideBarLeft = ({ clubsData, searchField }) => {
               : club.name.toLowerCase().includes(searchField);
           })
           ?.map((club, index) => (
-            <div
+            <li
               key={index}
               className="option-club flex items-center gap-4 border border-white bg-indigo-900 my-1 py-3 cursor-pointer hover:scale-95  pl-8"
               onClick={() => handleClick(club)}
             >
               {" "}
-              {/* <img src={club.url} alt={club.name} className="w-10 h-10" /> */}
+              <img src={club.url} alt={club.name} className="w-10 h-10" />
               {club.name}
-            </div>
+            </li>
           ))}
-      </div>
+      </ul>
     </>
     // </div>
   );
@@ -109,7 +109,6 @@ SideBarLeft.prototype = {
   clubsData: Proptypes.array,
   map: Proptypes.func,
   filter: Proptypes.func,
-  toLocaleLowerCase: Proptypes.func,
   handleClick: Proptypes.func,
   searchField: Proptypes.string,
   length: Proptypes.number,

@@ -5,11 +5,11 @@
 @tailwind utilities;
 
 * html {
-  @apply box-border p-0 m-0 ;
+  @apply box-border p-0 m-0 border border-red-700;
 }
 
 body {
-  @apply w-full h-screen overflow-hidden;
+  @apply w-full h-full overflow-hidden;
 }
 
 body.modal-open {

@@ -9,7 +9,7 @@ export default function ErrorPage() {
   return (
     <>
       <div
-        id={classes["error-page"]}
+        
         className=" font-Philosopher flex justify-center items-center text-blue-950 flex-col"
       >
         <Header />

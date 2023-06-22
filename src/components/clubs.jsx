@@ -205,16 +205,18 @@ import Form from "./form";
 import { MatchContextTeam } from "./MatchContextForTeams";
 import Modal from "./Modal";
 import { useNavigate } from "react-router-dom";
+import Heading from "./Heading";
 
 export default function Clubs() {
   let { clubsData } = useFetchData();
   const [searchField, setSearchFied] = useState("");
   const [openModal, setOpenModal] = useState(false);
   const btnRef = useRef();
-  const navigate = useNavigate();
+  const inputRef = useRef();
+  // const navigate = useNavigate();
 
   // call contextes
-  const { teams, setTeams, matches, setMatches, setconfirmed } =
+  const { setTeams, matches, setMatches, setconfirmed } =
     useContext(MatchContextTeam);
 
   //* to get not dupllicates teams/clubs
@@ -302,6 +304,9 @@ export default function Clubs() {
     btnRef.current.classList.add("ml-96", "mt-10");
   }, [setMatches, setTeams]);
 
+  function handleChange (e) {
+    setSearchFied(inputRef.current.value);
+  }
   // to hide button validate before adding the match
 
   const matchesList = matches.map((match) => {
@@ -328,36 +333,14 @@ export default function Clubs() {
 
   return (
     <div>
-      <header className="header h-40 w-full bg-black flex  ">
-        <div className=" w-96 ml-64 px-2 pt-20">
-          <input
-            type="search"
-            name="seachClub"
-            onChange={(e) => setSearchFied(e.target.value)}
-            placeholder="Search the clubs"
-            className="input-clubs py-3 px-4 text-2xl font-Philosopher ring ring-slate-400 mb-4 rounded-lg"
-          />
-        </div>
-        <div className="w-2/3 ml-96 px-2 flex justify-right items-center mr-0 pt-16">
-          <h4 className="text-white mx-6 text-3xl font-thin w-fit">
-            Add number of match(es)
-          </h4>
-          <Form onSubmit={getNumberOfMatchesFromInputField} />
-          <h1
-            className="text-white py-3 w-fit px-2 bg-black font-bold rounded-lg mx-5 text-2xl text-indigo-750 font-Philosopher cursor-pointer shadow-white ring-slate-500"
-            onClick={() => navigate("/")}
-          >
-            Home
-          </h1>
-        </div>
-      </header>
+      <Heading onSubmit={getNumberOfMatchesFromInputField} onChange= {handleChange} ref={inputRef} />
 
-      <section className=" grid grid-cols-5 h-full">
+      <section className=" grid grid-cols-5 h-full  ">
         <div className="col-span-1 ">
           <SideBarLeft clubsData={newParttoDisplay} searchField={searchField} />
         </div>
 
-        <main className=" mx-2 col-span-3 self-start h-full">
+        <main className=" mx-2 col-span-3 self-start h-700px">
           <div className="w-full h-full bg-gradient-to-r from-violet-700 via-black to-fuchsia-800 mt-10 mb-10 ">
             <div className="clubs">
               <div className=" flex text-center justify-between px-10  items-center ">
@@ -407,8 +390,8 @@ export default function Clubs() {
           />
         </div>
       </section>
-      <footer className="footer h-44 w-full bg-indigo-950 text-white text-center text-8xl font-Satisfy m-5">
-        Footer
+      <footer className="footer h-44 w-full bg-indigo-950 text-white text-center text-5xl font-Satisfy flex items-center justify-center">
+        Footer to be build when needed
       </footer>
     </div>
   );

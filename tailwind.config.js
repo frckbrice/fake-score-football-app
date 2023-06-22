@@ -28,7 +28,7 @@ export default {
       spacing: {
         "10vh": "10vh",
         "20vh": "20vh",
-        "30vh": "30vh",
+        "700px": "650px",
         "40vh": "40vh",
         "60vh": "60vh",
       },

@@ -9,6 +9,7 @@ import { MatchContextTeam } from "./MatchContextForTeams";
 import Modal from "./Modal";
 import SideBarRight from "./sidebarRight";
 import { useNavigate } from "react-router-dom";
+import Heading from "./Heading";
 
 function Countries() {
   let { countriesData } = useFetchData();
@@ -16,7 +17,8 @@ function Countries() {
 
   const [openModal, setOpenModal] = useState(false);
   const btnRef = useRef();
-    const navigate = useNavigate();
+  const inputRef = useRef();
+  const navigate = useNavigate();
 
   // call contextes
   const { setTeams, matches, setMatches, setconfirmed } =
@@ -125,38 +127,24 @@ function Countries() {
     document.body.classList.remove("modal-open");
   }
 
+  function handleChange(e) {
+    setSearchFied(inputRef.current.value);
+  }
+
   return (
     <div>
-      <header className="header h-40 w-full bg-black flex  ">
-        <div className=" w-96 ml-64 px-2 pt-20">
-          <input
-            type="search"
-            name="seachClub"
-            onChange={(e) => setSearchFied(e.target.value)}
-            placeholder="Search the clubs"
-            className="input-clubs py-3 px-4 text-2xl font-Philosopher ring ring-slate-400 mb-4 rounded-lg"
-          />
-        </div>
-        <div className="w-2/3 ml-96 px-2 flex justify-right items-center mr-0 pt-12">
-          <h4 className="text-white mx-6 text-3xl font-thin">
-            Add number of match(es)
-          </h4>
-          <Form onSubmit={getNumberOfMatchesFromInputField} />
-        </div>
-        <h1
-          className="text-white py-3 w-fit px-2 bg-black font-bold rounded-lg mx-5 text-2xl text-indigo-750 font-Philosopher cursor-pointer  ring-slate-500"
-          onClick={() => navigate("/")}
-        >
-          Home
-        </h1>
-      </header>
+      <Heading
+        onSubmit={getNumberOfMatchesFromInputField}
+        onChange={handleChange}
+        ref={inputRef}
+      />
 
       <section className="match-container grid grid-cols-5 h-full">
         <div className="col-span-1 ">
           <SideBarLeft clubsData={newParttoDisplay} searchField={searchField} />
         </div>
 
-        <main className=" mx-2 col-span-3 self-start h-full ">
+        <main className=" mx-2 col-span-3 self-start h-700px">
           <div className="w-full h-full bg-gradient-to-r from-violet-700 via-indigo to-fuchsia-800 my-10 ">
             <div className="clubs">
               <div className=" flex text-center gap-x-10 ml-72 items-center ">
@@ -205,7 +193,7 @@ function Countries() {
           />
         </div>
       </section>
-      <footer className="footer h-44 w-full bg-indigo-950 text-white text-center text-8xl font-Satisfy ">
+      <footer className="footer h-44 w-full bg-indigo-950 text-white text-center text-5xl font-Satisfy  flex items-center justify-center">
         Footer
       </footer>
     </div>
