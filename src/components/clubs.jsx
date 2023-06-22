@@ -204,33 +204,33 @@ import SideBarRight from "./sidebarRight";
 import Form from "./form";
 import { MatchContextTeam } from "./MatchContextForTeams";
 import Modal from "./Modal";
+import { useNavigate } from "react-router-dom";
 
 export default function Clubs() {
   let { clubsData } = useFetchData();
   const [searchField, setSearchFied] = useState("");
   const [openModal, setOpenModal] = useState(false);
   const btnRef = useRef();
+  const navigate = useNavigate();
 
   // call contextes
-  const { setTeams, matches, setMatches, setconfirmed } =
+  const { teams, setTeams, matches, setMatches, setconfirmed } =
     useContext(MatchContextTeam);
-  console.log(clubsData);
+
   //* to get not dupllicates teams/clubs
   const number = Math.ceil((clubsData.length / 2 + 3) / 2);
   // 624 is the remainder part of the array of exact number of clubs from A to Z without duplicates
-  console.log(number);
   const number2 = number + 624;
-  console.log(number2);
   const partToDisplayL = clubsData.slice(0, number2);
   const newParttoDisplay = partToDisplayL.slice(0, number2 / 2);
   const newPartToDisplayR = partToDisplayL.splice(-number2 / 2);
-  console.log(newParttoDisplay);
-  console.log(newPartToDisplayR);
+
+  // to display modal
   const toggleModal = useCallback(() => {
-    console.log("%cmodal button clicked", "color:blue", openModal);
     setOpenModal((prev) => !prev);
   }, []);
 
+  // to select all matches once
   const selectAll = useCallback(
     (e) => {
       const { checked } = e.target;
@@ -242,12 +242,12 @@ export default function Clubs() {
         }
       });
       setMatches(listOfconfirmed);
-      // setChecked((prev) => !prev);
       setconfirmed(checked);
     },
     [matches, setconfirmed, setMatches]
   );
 
+  // to set the the match validated
   const togleMatchconfirm = useCallback(
     (id) => {
       const updateMatches = matches?.map((match) =>
@@ -258,6 +258,7 @@ export default function Clubs() {
     [matches, setMatches]
   );
 
+  // to delete the match
   const deleteMatch = useCallback(
     (id) => {
       // removeMatch(id);
@@ -267,6 +268,7 @@ export default function Clubs() {
     [matches, setMatches]
   );
 
+  //to update edit the match
   const editMatch = useCallback(
     (id, match) => {
       // changeMatch(id);
@@ -277,7 +279,7 @@ export default function Clubs() {
     [matches, setMatches]
   );
 
-  //take the value from form and send it to ctx to create empty matches
+  // to create empty match and display validate btn
   const getNumberOfMatchesFromInputField = useCallback(() => {
     setMatches((prev) => {
       if (
@@ -294,9 +296,10 @@ export default function Clubs() {
           },
         ];
       }
-
       return prev;
     });
+    btnRef.current.style.display = "block";
+    btnRef.current.classList.add("ml-96", "mt-10");
   }, [setMatches, setTeams]);
 
   // to hide button validate before adding the match
@@ -316,21 +319,12 @@ export default function Clubs() {
     );
   });
 
+  // to avoid scrolling while in modal
   if (openModal) {
     document.body.classList.add("modal-open");
   } else {
     document.body.classList.remove("modal-open");
   }
-
-  document.addEventListener("DOMContentLoaded", () => {
-    if (matches.length === 0) {
-      console.log(" no matches yet");
-      btnRef.current.style.display = "none";
-    } else {
-      btnRef.current.style.display = "block";
-    }
-  });
-  // console.clear();
 
   return (
     <div>
@@ -349,6 +343,12 @@ export default function Clubs() {
             Add number of match(es)
           </h4>
           <Form onSubmit={getNumberOfMatchesFromInputField} />
+          <h1
+            className="text-white py-3 w-fit px-2 bg-black font-bold rounded-lg mx-5 text-2xl text-indigo-750 font-Philosopher cursor-pointer shadow-white ring-slate-500"
+            onClick={() => navigate("/")}
+          >
+            Home
+          </h1>
         </div>
       </header>
 
@@ -360,12 +360,12 @@ export default function Clubs() {
         <main className=" mx-2 col-span-3 self-start h-full">
           <div className="w-full h-full bg-gradient-to-r from-violet-700 via-black to-fuchsia-800 mt-10 mb-10 ">
             <div className="clubs">
-              <div className="div-selectall flex text-center justify-between px-10  items-center ">
+              <div className=" flex text-center justify-between px-10  items-center ">
                 <h2 className="title text-center text-5xl font-Satisfy text-indigo-300 font-thin my-4 mr-40 w-fit">
                   Place the match(es)
                 </h2>
                 <h3 className="validate flex justify-center items-center ">
-                  <span className="text-2xl font-Satisfy font-bold text-indigo-300 mr-3">
+                  <span className="text-2xl font-Satisfy font-thin text-indigo-300 mr-3">
                     Select All{" "}
                   </span>
 
@@ -373,11 +373,13 @@ export default function Clubs() {
                     type="checkbox"
                     className="selectAll w-10 h-10"
                     onChange={(e) => selectAll(e)}
-                    checked={!matches.some((user) => user?.confirmed !== true)}
+                    checked={
+                      !matches.some((match) => match?.confirmed !== true)
+                    }
                   />
                 </h3>
               </div>
-              {/* {modal && <Modal>{matchesList} </Modal>} */}
+
               {openModal ? (
                 <Modal
                   open={() => setOpenModal(true)}
@@ -386,15 +388,14 @@ export default function Clubs() {
               ) : null}
 
               {matchesList}
-              <div className="text-center m-10">
-                <button
-                  className="btn-validate px-8 py-2 w-fit text-white bg-indigo-500 font-bold font-Philosopher rounded-lg text-2xl"
-                  onClick={toggleModal}
-                  ref={btnRef}
-                >
-                  Validate
-                </button>
-              </div>
+
+              <button
+                className="btn-validate px-8 py-2 w-fit text-white bg-indigo-500 font-bold font-Philosopher rounded-lg text-2xl hidden"
+                onClick={toggleModal}
+                ref={btnRef}
+              >
+                Validate
+              </button>
             </div>
           </div>
         </main>
@@ -406,7 +407,7 @@ export default function Clubs() {
           />
         </div>
       </section>
-      <footer className="footer h-44 w-full bg-indigo-950 text-white text-center text-1xl font-Satisfy ">
+      <footer className="footer h-44 w-full bg-indigo-950 text-white text-center text-8xl font-Satisfy m-5">
         Footer
       </footer>
     </div>

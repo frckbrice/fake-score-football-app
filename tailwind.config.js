@@ -16,10 +16,22 @@ export default {
       desktop: "1280px",
       // => @media (min-width: 1280px) { ... }
     },
+    backgroundPosition: {
+      top: 'top',
+      'top-30': 'top -80% center 0',
+    },
     extend: {
-      backgroundImage: (theme) => ({
+      backgroundImage: () => ({
         ball: "url('./src/assets/burningWbg.png')",
+        ballB: "url('./src/assets/burningBall.jpg')",
       }),
+      spacing: {
+        "10vh": "10vh",
+        "20vh": "20vh",
+        "30vh": "30vh",
+        "40vh": "40vh",
+        "60vh": "60vh",
+      },
     },
   },
   plugins: [],

@@ -74,8 +74,6 @@ const SideBarLeft = ({ clubsData, searchField }) => {
     addTeam("team1", club);
   };
 
-  console.log(clubsData)
-
   return (
     // <div className="sidebar h-screen w-96">
     <>

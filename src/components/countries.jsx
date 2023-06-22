@@ -1,18 +1,22 @@
-import { useCallback, useState, useContext } from "react";
+import { useCallback, useState, useContext, useRef } from "react";
 import PropTypes from "prop-types";
 import Match from "./score";
 import { useFetchData } from "./Api";
 import SideBarLeft from "./sideBarLeft";
-import SideBarRight from "./sidebarRight";
+// import SideBarRight from "./sidebarRight";
 import Form from "./form";
 import { MatchContextTeam } from "./MatchContextForTeams";
+import Modal from "./Modal";
+import SideBarRight from "./sidebarRight";
+import { useNavigate } from "react-router-dom";
 
 function Countries() {
   let { countriesData } = useFetchData();
   const [searchField, setSearchFied] = useState("");
 
-  // const [checked, setChecked] = useState(false);
-  // const [filter, setFilter] = useState("All");
+  const [openModal, setOpenModal] = useState(false);
+  const btnRef = useRef();
+    const navigate = useNavigate();
 
   // call contextes
   const { setTeams, matches, setMatches, setconfirmed } =
@@ -23,9 +27,12 @@ function Countries() {
   const newParttoDisplay = countriesData.slice(0, number);
   const newPartToDisplayR = countriesData.splice(number, countriesData.length);
 
-  console.log("newParttoDisplay", newParttoDisplay);
-  console.log("newPartToDisplayR", newPartToDisplayR);
+  // to display modal
+  const toggleModal = useCallback(() => {
+    setOpenModal((prev) => !prev);
+  }, []);
 
+  // to select all matches once
   const selectAll = useCallback(
     (e) => {
       const { checked } = e.target;
@@ -41,19 +48,18 @@ function Countries() {
     },
     [matches, setMatches, setconfirmed]
   );
-
-  console.log("searchField =", searchField);
+  // to validate the match
   const togleMatchconfirm = useCallback(
     (id) => {
       const updateMatches = matches?.map((match) =>
         match.id === id ? { ...match, confirmed: !match.confirmed } : match
       );
-
       setMatches(updateMatches);
     },
     [matches, setMatches]
   );
 
+  // to delete the match
   const deleteMatch = useCallback(
     (id) => {
       // removeMatch(id);
@@ -63,6 +69,7 @@ function Countries() {
     [matches, setMatches]
   );
 
+  //to update edit the match
   const editMatch = useCallback(
     (id, match) => {
       // changeMatch(id);
@@ -73,7 +80,7 @@ function Countries() {
     [matches, setMatches]
   );
 
-  //take the value from form and send it to ctx to create empty matches
+  // to create empty matches and display validate btn
   const getNumberOfMatchesFromInputField = useCallback(() => {
     setMatches((prev) => {
       if (
@@ -90,9 +97,10 @@ function Countries() {
           },
         ];
       }
-
       return prev;
     });
+    btnRef.current.style.display = "block";
+    btnRef.current.classList.add("ml-96", "mt-10");
   }, [setMatches, setTeams]);
 
   const matchesList = matches.map((match) => {
@@ -109,6 +117,13 @@ function Countries() {
       />
     );
   });
+
+  // to avoid scrolling while in modal
+  if (openModal) {
+    document.body.classList.add("modal-open");
+  } else {
+    document.body.classList.remove("modal-open");
+  }
 
   return (
     <div>
@@ -128,18 +143,24 @@ function Countries() {
           </h4>
           <Form onSubmit={getNumberOfMatchesFromInputField} />
         </div>
+        <h1
+          className="text-white py-3 w-fit px-2 bg-black font-bold rounded-lg mx-5 text-2xl text-indigo-750 font-Philosopher cursor-pointer  ring-slate-500"
+          onClick={() => navigate("/")}
+        >
+          Home
+        </h1>
       </header>
 
-      <section className="match-container grid lg:grid-cols-5 h-full">
+      <section className="match-container grid grid-cols-5 h-full">
         <div className="col-span-1 ">
           <SideBarLeft clubsData={newParttoDisplay} searchField={searchField} />
         </div>
 
-        <main className="score-container mx-2 col-span-3 self-start h-full ">
-          <div className="w-full h-full bg-gradient-to-r from-violet-700 via-black to-fuchsia-800 my-10 ">
+        <main className=" mx-2 col-span-3 self-start h-full ">
+          <div className="w-full h-full bg-gradient-to-r from-violet-700 via-indigo to-fuchsia-800 my-10 ">
             <div className="clubs">
-              <div className="div-selectall flex text-center gap-x-10 ml-72 items-center ">
-                <h2 className="title text-center text-5xl font-Satisfy  my-4 w-fit text-white font-light mr-40">
+              <div className=" flex text-center gap-x-10 ml-72 items-center ">
+                <h2 className="title text-center text-5xl font-Satisfy  my-4 w-fit text-white font-thin mr-40">
                   Place the match(es)
                 </h2>
                 <h3 className="validate flex justify-center items-center ">
@@ -150,12 +171,29 @@ function Countries() {
                     type="checkbox"
                     className="selectAll w-10 h-10"
                     onChange={(e) => selectAll(e)}
-                    checked={!matches.some((user) => user?.confirmed !== true)}
+                    checked={
+                      !matches.some((match) => match?.confirmed !== true)
+                    }
                   />
                 </h3>
               </div>
 
+              {openModal ? (
+                <Modal
+                  open={() => setOpenModal(true)}
+                  onclose={() => setOpenModal(false)}
+                />
+              ) : null}
+
               {matchesList}
+
+              <button
+                className="btn-validate px-8 py-2 w-fit text-white bg-indigo-500 font-bold font-Philosopher rounded-lg text-2xl hidden"
+                onClick={toggleModal}
+                ref={btnRef}
+              >
+                Validate
+              </button>
             </div>
           </div>
         </main>
@@ -167,7 +205,7 @@ function Countries() {
           />
         </div>
       </section>
-      <footer className="footer h-44 w-full bg-indigo-950 text-white text-center text-8xl">
+      <footer className="footer h-44 w-full bg-indigo-950 text-white text-center text-8xl font-Satisfy ">
         Footer
       </footer>
     </div>
@@ -176,7 +214,7 @@ function Countries() {
 
 Countries.propTypes = {
   name: PropTypes.string,
-  club: PropTypes.object,
+  country: PropTypes.object,
   countriesData: PropTypes.arrayOf(Object),
   handleAdd: PropTypes.func,
   newPartToDisplayR: PropTypes.func,

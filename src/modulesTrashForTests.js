@@ -46,6 +46,7 @@ const uniqueItem = data.reduce((acc, curr) => {
 }, []);
 
 const uniqIt = data.filter((item, id, array) => array.indexOf(item) == id);
+
 //* get date
 const day = new Date("given date").getDate();
 const month = date.toLocalString("en-US", { month: "long" });
@@ -172,3 +173,33 @@ body.modal-open {
           Close &times;
         </button>
       </div> */}
+
+  //* import forward ref
+  import React, { forwardRef } from "react";
+import PropTypes from "prop-types";
+
+const Input = (props, ref) => {
+  return (
+    <>
+      <input
+        type={props.type}
+        name={props.name}
+        ref={ref}
+        onChange={props.handleChange}
+        placeholder={props.placeholder}
+        className={props.className}
+      />
+    </>
+  );
+};
+Input.prototype = {
+  type: PropTypes.string,
+  name: PropTypes.string,
+  onChange: PropTypes.func,
+  placeholder: PropTypes.string,
+  className: PropTypes.string,
+};
+// const forwardRefInput = React.forwardRef(Input);
+
+// export default forwardRefInput;
+export default Input;
