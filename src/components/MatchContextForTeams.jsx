@@ -60,7 +60,7 @@ import { useState, createContext } from "react";
 import toast from "react-hot-toast";
 
 export const MatchContextTeam = createContext({
-  teams: [],
+  teams: {},
   addTeam: () => {},
   removeTeam: () => {},
   editTeam: () => {},
@@ -69,6 +69,7 @@ export const MatchContextTeam = createContext({
 export default function TeamContextProvider({ children }) {
   const [matches, setMatches] = useState([]);
   const [confirmed, setconfirmed] = useState(false);
+  const [count, setcount] = useState(0);
 
   const [teams, setTeams] = useState({
     team1: {},
@@ -83,7 +84,7 @@ export default function TeamContextProvider({ children }) {
       ...teamData,
       id: Math.random(),
       confirmed: confirmed,
-      date: new Date(),
+      date: new Date().getSeconds(),
     };
 
     // console.log("%cout of add teams is : ", "color:red", confirmed);

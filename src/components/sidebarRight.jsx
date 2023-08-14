@@ -69,7 +69,8 @@ function SideBarRight({ clubsData, searchField }) {
   const { addTeam } = useContext(MatchContextTeam);
 
   const handleClicked = (club) => {
-    addTeam("team2", club);
+    // addTeam("team1", club);
+   addTeam("team2", club);
   };
 
   return (
@@ -87,7 +88,7 @@ function SideBarRight({ clubsData, searchField }) {
           ?.map((club, index) => (
             <li
               key={index}
-              className="option-club  flex items-center gap-4 border border-white bg-indigo-900 my-1 px-2 py-3 cursor-pointer hover:scale-95 pl-8"
+              className="option-club  flex items-center gap-4 border border-white bg-slate-900 my-1 px-2 py-3 cursor-pointer hover:scale-95 pl-8"
               onClick={() => handleClicked(club)}
             >
               <img src={club.url} alt={club.name} className="w-10 h-10 " />

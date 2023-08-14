@@ -72,6 +72,8 @@ const SideBarLeft = ({ clubsData, searchField }) => {
 
   const handleClick = (club) => {
     addTeam("team1", club);
+
+    //  addTeam('team2',club);
   };
 
   return (
@@ -91,7 +93,7 @@ const SideBarLeft = ({ clubsData, searchField }) => {
           ?.map((club, index) => (
             <li
               key={index}
-              className="option-club flex items-center gap-4 border border-white bg-indigo-900 my-1 py-3 cursor-pointer hover:scale-95  pl-8"
+              className="option-club flex items-center gap-4 border border-white bg-slate-900 my-1 py-3 cursor-pointer hover:scale-95  pl-8"
               onClick={() => handleClick(club)}
             >
               {" "}

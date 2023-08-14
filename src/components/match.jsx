@@ -5,16 +5,19 @@ const MatchCapture = (props) => {
     <>
       <div className="maincontainer">
         <div className="match">
-          <div className="match-content font-Satisfy">
+          <div
+            className="match-content font-Philosopher border-b-slate-800"
+            
+          >
             <div className="column">
               <div className="team">
                 <h2 className="team-name flex gap-x-4 items-center mr-8">
                   <img
                     src={props.team1?.url}
                     alt={props.team1?.name}
-                    className=" w-24 h-24 rounded-md "
+                    className=" w-24 h-24 rounded-md"
                   />
-                  <p>{props.team1?.name}</p>
+                  <p className="teamname">{props.team1?.name}</p>
                 </h2>
               </div>
             </div>
@@ -39,7 +42,7 @@ const MatchCapture = (props) => {
             <div className="column">
               <div className="team">
                 <h2 className="team-name flex gap-x-4 items-center">
-                  <p>{props.team2?.name}</p>
+                  <p className="teamname">{props.team2?.name}</p>
 
                   <img
                     src={props.team2?.url}

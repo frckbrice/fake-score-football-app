@@ -24,7 +24,7 @@ function filterFn(array) {
     (entry) =>
       typeof entry.name === "string" &&
       entry.name.includes(":") == 0 &&
-      entry.name.match(/^[a-z]/i)
+      entry.name.match(/[a-zA-Z]/gi)
   );
 }
 
@@ -60,7 +60,8 @@ export const useFetchData = () => {
   }, []);
 
   // const clubsData = filterFn(temp);
-
+console.log('clubs', clubsData);
+console.log('countries', countriesData);
   return {
     clubsData,
     setClubsData,
