@@ -154,9 +154,9 @@ export default function Sharedcomponent(props) {
         <main className=" mx-2 col-span-3 self-start h-700px ">
           <div className="w-full h-full mt-10 mb-10 ">
             <div className="clubs">
-              <div className=" flex text-center justify-between px-10  items-center ">
+              <div className="matchbox">
                 <h2 className="title text-center text-5xl font-Satisfy text-black font-thin my-4 mr-40 w-fit">
-                  Place the match(es)
+                   match(es)
                 </h2>
                 <h3 className="validate flex justify-center items-center ">
                   <span className="text-2xl font-Satisfy font-thin text-black mr-3">

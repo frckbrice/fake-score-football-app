@@ -79,7 +79,7 @@ const SideBarLeft = ({ clubsData, searchField }) => {
   return (
     // <div className="sidebar h-screen w-96">
     <>
-      <h1 className="text-center text-3xl font-Philosopher font-bold">
+      <h1 className="rangeleft">
         Teams [ FC - A - K ]
       </h1>
 

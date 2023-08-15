@@ -28,9 +28,9 @@ function Form(props) {
       <div>
         <button
           type="submit"
-          className="Add py-3 w-fit px-2 bg-white font-bold rounded-lg mx-5 text-2xl text-indigo-750 font-Philosopher"
+          className="Addmatch py-3 w-fit px-2 bg-white font-bold rounded-lg mx-5 text-2xl text-indigo-750 font-Philosopher"
         >
-          ADD
+          NewMatch
         </button>
       </div>
     </form>

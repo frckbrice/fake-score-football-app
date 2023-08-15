@@ -69,6 +69,71 @@
   font-weight: 600;
 }
 
+.divaddhome {
+  width: 67px;
+  padding: 32px 8px 0;
+  display: flex;
+  align-items: center;
+  margin: 2.5rem 0 0;
+  gap: 10rem;
+}
+
+.homepage {
+  color: black;
+  background-color: white;
+  padding: 10px 20px;
+  width: 7rem;
+  font-weight: bold;
+  border-radius: 0.5rem;
+  font-size: 1.5rem /* 24px */;
+  line-height: 2rem;
+  font-family: Philosopher;
+  cursor: pointer;
+  --tw-shadow-color: #fff;
+  --tw-shadow: var(--tw-shadow-colored);
+  --tw-ring-opacity: 1;
+  --tw-ring-color: rgb(100 116 139 / var(--tw-ring-opacity));
+}
+
+.titleheading {
+  color: #fff;
+  position: absolute;
+  top: -2px;
+  right: 8px;
+  padding-right: 5rem;
+}
+
+.titleheading h1 {
+  font-weight: bold;
+  border-radius: 0.5rem;
+  font-size: 3rem /* 48px */;
+  line-height: 1;
+  font-family: Satisfy;
+  --tw-shadow-color: #fff;
+  --tw-shadow: var(--tw-shadow-colored);
+  --tw-ring-opacity: 1;
+  --tw-ring-color: rgb(100 116 139 / var(--tw-ring-opacity));
+  z-index: 10;
+  margin-top: 2rem /* 32px */;
+}
+
+.matchbox {
+  display: flex;
+  text-align: center;
+  justify-content: space-between;
+  padding-left: 2.5rem /* 40px */;
+  padding-right: 2.5rem /* 40px */;
+  align-items: center;
+}
+
+.rangerght,
+.rangeleft {
+  text-align: center;
+  font-size: 1.875rem /* 30px */;
+  line-height: 2.25rem /* 36px */;
+  font-family: Philosopher;
+  font-weight: bold;
+}
 
 /** responsiveness */
 
@@ -79,5 +144,31 @@
 
   li {
     padding-left: 0;
+  }
+
+  .titleheading {
+    position: absolute;
+    left: 40px;
+    top: -15px;
+  }
+
+  .divform {
+    position: absolute;
+    right: 2rem;
+  }
+
+  .homepage {
+    position: absolute;
+    right: 12rem;
+  }
+
+  .matchbox {
+    justify-content: center;
+    gap: 0;
+  }
+
+  .rangerght,
+  .rangeleft {
+    font-size: 1.1rem;
   }
 }

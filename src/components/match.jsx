@@ -1,4 +1,5 @@
 import PropTypes from "prop-types";
+import './match.css'
 
 const MatchCapture = (props) => {
   return (
