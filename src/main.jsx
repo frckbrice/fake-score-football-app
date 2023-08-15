@@ -8,10 +8,16 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Clubs from "./components/clubs.jsx";
 import Countries from "./components/countries.jsx";
 import ErrorPage from "./error_page.jsx";
+import Initialpage from "./components/Layout/initialPage.jsx";
 
 const router = createBrowserRouter([
   {
     path: "/",
+    element: <Initialpage />,
+    errorElement: <ErrorPage />,
+  },
+  {
+    path: "/app",
     element: <App />,
     errorElement: <ErrorPage />,
   },

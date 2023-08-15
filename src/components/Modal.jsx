@@ -27,6 +27,7 @@ const Modal = (props) => {
   return (
     <Fragment>
       <div className="overlay"></div>
+      
       {ReactDOM.createPortal(
         <ModalOverlay onclose={props.onclose}>{matchesList}</ModalOverlay>,
         portalElement

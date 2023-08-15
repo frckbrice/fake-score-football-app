@@ -7,18 +7,16 @@ import Footer from "./components/Layout/Footer";
 
 function App() {
   return (
-    <div className="grid grid-row-5">
-      <div className="row-col-1">
+    <div className="globlalcontainer">
+      <div className="header app">
         <Header />
       </div>
-      <div className="row-col-3">
+      <div className="mainapp">
         <Content />
       </div>
-      <div className="row-col-1">
+      <div className="footerapp">
         <Footer />
       </div>{" "}
-      {/* <Clubs /> */}
-      {/* <Countries /> */}
     </div>
   );
 }

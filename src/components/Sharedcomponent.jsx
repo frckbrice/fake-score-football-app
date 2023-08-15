@@ -70,8 +70,8 @@ export default function Sharedcomponent(props) {
   const deleteMatch = useCallback(
     (id) => {
       // removeMatch(id);
-      const updateMateches = matches?.filter((match) => match.id !== id);
-      setMatches(updateMateches);
+      const updatedMateches = matches?.filter((match) => match.id !== id);
+      setMatches(updatedMateches);
     },
     [matches, setMatches]
   );
@@ -106,6 +106,7 @@ export default function Sharedcomponent(props) {
       }
       return prev;
     });
+    // to make validata button appear after match creation
     btnRef.current.style.display = "block";
     // btnRef.current.classList.add("ml-96", "mt-10");
   }, [setMatches, setTeams]);

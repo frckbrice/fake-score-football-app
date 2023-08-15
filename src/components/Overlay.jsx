@@ -38,7 +38,7 @@ const ModalOverlay = (props) => {
         // building pdf file
         const pdf = new jsPDF("p", "mm", "a4");
         pdf.addImage(canvas, "PNG", 0, 0, canvas.width, canvas.height);
-        pdf.save("mycreenfile21062023.pdf");
+        pdf.save(`Captureof${new Date(new Date().getDay())}`);
         screenshotPreviewRef.current.classList.add("show");
       });
       // passing capture stream data as video source object
@@ -54,12 +54,28 @@ const ModalOverlay = (props) => {
   };
   return (
     <div className="modal">
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          width: "100%",
+          fontSize:'2rem',
+          fontFamily: 'Satisfy'
+        }}
+      >
+        <span>
+          {`screen capture of ${new Date().toUTCString().slice(5, 16)}`}
+        </span>{" "}
+        <span style={{fontSize:'5rem'}}>⚽</span>
+      </div>
       <div className="content">{props.children}</div>
       <div className="src-btn-div flex justify-center">
         <button
           id="src-btn"
           ref={screenshotBtnRef}
           onClick={(e) => takeAshot(e)}
+          style={{marginRight:'15px'}}
         >
           Capture Screenshot
         </button>

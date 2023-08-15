@@ -75,7 +75,11 @@ function SideBarRight({ clubsData, searchField }) {
 
   return (
     <>
-      <h1 className="rangerght">Teams [ K - Z ]</h1>
+      {window.location.href.includes('countries') ? (
+        <h1 className="rangeleft">Teams [ A - Z ]</h1>
+      ) : (
+        <h1 className="rangeleft">Teams [ K - Z ]</h1>
+      )}
       <ul className="list list-none pr-1 text-xl font-Philosopher text-white h-700px overflow-y-auto">
         {clubsData
           ?.filter((club) => {

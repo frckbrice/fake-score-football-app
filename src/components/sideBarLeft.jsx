@@ -79,9 +79,11 @@ const SideBarLeft = ({ clubsData, searchField }) => {
   return (
     // <div className="sidebar h-screen w-96">
     <>
-      <h1 className="rangeleft">
-        Teams [ FC - A - K ]
-      </h1>
+      {window.location.href.includes('countries') ? (
+        <h1 className="rangeleft">Teams [ A - Z ]</h1>
+      ) : (
+        <h1 className="rangeleft">Teams [ FC - A - K ]</h1>
+      )}
 
       <ul className="list list-none pl-1 text-xl font-Philosopher text-white h-700px overflow-y-auto">
         {clubsData

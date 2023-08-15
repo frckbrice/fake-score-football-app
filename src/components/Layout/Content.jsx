@@ -7,7 +7,9 @@ function Content() {
     <div className="content  h-60vh flex flex-col items-center justify-center text-center bg-no-repeat bg-cover bg-top relative px-10">
       <div className="absolute top-16 font-Satisfy text-3xl leading-10">
         <h1>Which Competition do you need ?</h1>
-        <p>Make your choice below </p>
+        <div style={{marginTop:'20px'}}>
+          <p>Choose between </p>
+        </div>
       </div>
       <div className="content-choice flex gap-x-20">
         <div

@@ -172,5 +172,11 @@
     font-size: 1.1rem;
   }
 
-  
+
+}
+
+@media screen and (max-width: 475px) {
+  .footer {
+    display: none;
+  }
 }

@@ -23,9 +23,9 @@ const Heading = forwardRef((props, ref) => {
         </div>
         <h1
           className="homepage"
-          onClick={() => navigate("/")}
+          onClick={() => navigate("/app")}
         >
-          Home 
+          Back 
         </h1>
       </div>
       <div className="titleheading">
