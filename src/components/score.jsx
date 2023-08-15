@@ -136,18 +136,18 @@ const Match = (props) => {
                 </h2>
               </div>
             </div>
-            <div>
+            <div className="deleteboxfromscore">
               <input
                 type="checkbox"
                 checked={props.confirmed || false}
-                className="checb w-10 h-10 mt-6 ml-10 bg-green-600"
+                className="checbfromscore"
                 onChange={() => props.toggleMatchconfirm(props.id)}
               />
               <button
-                className="btn-icon mx-3"
+                className="btn-icon"
                 onClick={() => props.deleteMatch(props.id)}
               >
-                <GiCrossedSabres className="icon text-red-700 w-10 h-10 " />{" "}
+                <GiCrossedSabres className="icon" />{" "}
               </button>
             </div>
           </div>
