@@ -1,41 +1,21 @@
-// import React, { useRef } from "react";
-// import Input from "./Input";
-// import PropTypes from "prop-types";
+// import { useCallback, useState, useContext } from "react";
+import PropTypes from "prop-types";
+import { useFetchData } from "./Api";
+import Sharedcomponent from "./Sharedcomponent";
 
-// const Clubs = ({ clubsData }) => {
-//   const inputref = useRef();
+export default function Clubs() {
+  let { clubsData } = useFetchData();
 
-//   function searchFilterFn(e) {
-//     const textForSearch = inputref.current.value.toLowerCase();
-//     const re = new RegExp(textForSearch, "i");
-//     const filtered = clubsData.filter((entry) =>
-//       Object.values(entry).some(
-//         (val) => typeof val === "string" && val.match(re)
-//       )
-//     );
-//     clubsData = filtered;
-//     console.log(clubsData);
-//   }
+  return (
+    <>
+      <Sharedcomponent
+        data={clubsData}
+        title="International teams ChampionShip"
+      />
+    </>
+  );
+}
 
-//   return (
-//     <>
-//       <div>
-//         <Input
-//           type="text"
-//           ref={inputref}
-//           name="seachClub"
-//           onKeyUp={(e) => searchFilterFn(e)}
-//           placeholder="Search the club"
-//         />
-//       </div>
-//     </>
-//   );
-// };
-
-// Clubs.propTypes = {
-//   name: PropTypes.string,
-//   club: PropTypes.object,
-//   clubsData: PropTypes.arrayOf(Object),
-// };
-
-// export default Clubs;
+Clubs.propTypes = {
+  useFetchData: PropTypes.func,
+};

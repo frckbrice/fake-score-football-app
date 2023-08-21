@@ -18,13 +18,18 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 
-//  to remove duplicates data from array
+//  to remove duplicates, not string, [F-A] from array
 function filterFn(array) {
-  return array.filter((entry) => entry.name.includes(":") == 0);
+  return array.filter(
+    (entry) =>
+      typeof entry.name === "string" &&
+      entry.name.includes(":") == 0 &&
+      entry.name.match(/[a-zA-Z]/gi)
+  );
 }
 
 export const useFetchData = () => {
-  // const [clubsData, setClubsData] = useState([]);
+  const [clubsData, setClubsData] = useState([]);
   const [temp, setTemp] = useState([]);
   const [countriesData, setCountriesData] = useState([]);
   // const [loading, setLoading] = useState(true);
@@ -43,7 +48,8 @@ export const useFetchData = () => {
             );
           },
         });
-        setTemp(data.clubs);
+        // setTemp(data.clubs);
+        setClubsData(filterFn(data.clubs));
         setCountriesData(data.countries);
       } catch (error) {
         console.error(error);
@@ -53,10 +59,13 @@ export const useFetchData = () => {
     fetchData();
   }, []);
 
-  const clubsData = filterFn(temp);
-
+  // const clubsData = filterFn(temp);
+console.log('clubs', clubsData);
+console.log('countries', countriesData);
   return {
     clubsData,
+    setClubsData,
     countriesData,
+    setCountriesData,
   };
 };

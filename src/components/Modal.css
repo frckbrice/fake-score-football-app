@@ -1,0 +1,114 @@
+/** modal part*/
+
+.modal {
+  position: fixed;
+  top: 5vh;
+  left: 25%;
+  height: 80%;
+  width: 40%;
+  background-color: white;
+  padding: 2rem 0;
+  border-radius: 14px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
+  z-index: 30;
+  animation: slide-down 300ms ease-out forwards;
+  background: linear-gradient( rgba(0, 0, 0, 0.5));
+  background-repeat: no-repeat;
+  /* background-position: center; */
+}
+
+.overlay {
+  background: url("../assets/burningBall.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  opacity: 0.8;
+  position: fixed;
+  top: 0.1;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+}
+
+@keyframes slide-down {
+  from {
+    opacity: 0;
+    transform: translateY(-5rem);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/** Scrensssssssssssssshot part*/
+
+
+
+#cancel-btn,
+#src-btn,
+#screenshot {
+  position: fixed;
+  left: 50%;
+  transform: translate(-20%, -20%);
+}
+
+#cancel-btn,
+#src-btn {
+  left: 40%;
+  bottom: 15px;
+  border: none;
+  outline: none;
+  color: #fff;
+  cursor: pointer;
+  font-size: 1rem;
+  padding: 15px 25px;
+  border-radius: 30px;
+  background: #4a98f7;
+}
+
+#cancel-btn {
+  left: 68%;
+  background: #f74a75;
+}
+
+#src-preview {
+  position: fixed;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 100%;
+  opacity: 0;
+  pointer-events: none;
+  background: rgba(0, 0, 0, 0.8);
+  transition: all 0.15s ease;
+}
+#src-preview.show {
+  opacity: 1;
+  pointer-events: auto;
+}
+#src-preview #screenshot {
+  width: 70%;
+  top: 50%;
+  opacity: 0;
+  pointer-events: none;
+  aspect-ratio: 16 / 9;
+  transition: transform 0.15s ease;
+  transform: translate(-50%, -50%) scale(0.9);
+}
+#src-preview.show #screenshot {
+  opacity: 1;
+  pointer-events: auto;
+  /* transform: translate(-50%, -50%) scale(1); */
+}
+#screenshot #close-btn {
+  position: absolute;
+  right: -55px;
+  color: #fff;
+  cursor: pointer;
+  font-size: 1.1rem;
+}
+#screenshot #img {
+  width: 100%;
+}

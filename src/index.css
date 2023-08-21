@@ -1,13 +1,18 @@
-@import url("https://fonts.googleapis.com/css2?family=Philosopher:ital@0;1&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Philosopher:ital@0;1&family=Satisfy&display=swap");
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 * html {
-  @apply border border-black;
+  @apply box-border p-0 m-0 border border-red-700;
 }
 
 body {
-  @apply w-full h-screen border border-red-600;
+  @apply w-full h-full overflow-hidden;
 }
+
+body.modal-open {
+  @apply overflow-y-hidden;
+}
+

@@ -1,0 +1,45 @@
+/* .team-name img {
+   w-10 h-10 mt-6 ml-10 text-green-600
+
+} */
+
+.checbfromscore {
+  width: 2.5rem /* 40px */;
+  height: 2.5rem /* 40px */;
+  margin-top: 1.5rem /* 24px */;
+  margin-left: 2.5rem /* 40px */;
+  --tw-text-opacity: 1;
+  color: rgb(22 163 74 / var(--tw-text-opacity));
+}
+
+.btn-icon {
+   margin-left: 0.75rem/* 12px */;
+  margin-right: 0.75rem/* 12px */;
+}
+
+.icon {
+   --tw-text-opacity: 1;
+  color: rgb(185 28 28 / var(--tw-text-opacity));
+   width: 2.5rem/* 40px */;
+   height: 2.5rem/* 40px */;
+}
+
+
+@media screen and (max-width: 768px) {
+  .team-name img {
+    width: 4rem;
+    height: 3rem;
+  }
+
+  .deleteboxfromscore {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .icon,
+  .checbfromscore {
+     width: 2rem /* 40px */;
+  }
+}
